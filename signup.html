@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./signup.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <main class="signup-page">
+      <section class="signup-card" aria-label="Sign up form">
+        <header class="signup-top">
+          <div class="signup-brand">
+            <img src="./Logo.png" alt="Ecotrack logo" />
+            <h1>SIGN UP</h1>
+          </div>
+          <p class="login-link">Already have an account? <a href="./login.html">LOGIN.</a></p>
+        </header>
+
+        <div class="signup-content">
+          <h2>ABOUT YOU</h2>
+          <p class="subtitle">Tell us a little about yourself.</p>
+          <p class="question">Who will be using this account?</p>
+
+          <form class="signup-form" id="stepForm" action="./signup-step-2.html" method="get" novalidate>
+            <label class="select-wrap">
+              <select required>
+                <option value="" selected disabled>Select user type</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="parent">Parent</option>
+                <option value="organization">Organization</option>
+              </select>
+            </label>
+
+            <button type="submit" class="next-btn">NEXT</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="./alerts.js"></script>
+    <script>
+      document.querySelector("#stepForm")?.addEventListener("submit", (event) => {
+        const select = event.currentTarget.querySelector("select");
+        if (!select || !select.value) {
+          event.preventDefault();
+          window.showToast("warning", "Please select an option before continuing.");
+        }
+      });
+    </script>
+  </body>
+</html>

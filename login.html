@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-card" aria-label="Login form">
+        <header class="auth-brand">
+          <img src="./Logo.png" alt="Ecotrack logo" />
+          <h1>ECOTRACK</h1>
+        </header>
+
+        <p class="auth-subtitle">
+          Type in your Email Address and Password to Login or <a href="./signup.html">SIGNUP</a>.
+        </p>
+
+        <form class="auth-form" id="loginForm" novalidate>
+          <label class="input-group">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                />
+                <path
+                  d="m4.5 7.2 6.65 5.16a1.4 1.4 0 0 0 1.7 0L19.5 7.2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <input type="email" placeholder="Email" autocomplete="email" required />
+          </label>
+
+          <label class="input-group">
+            <input type="password" placeholder="Password" autocomplete="current-password" required />
+          </label>
+
+          <button type="submit" class="auth-login-btn">LOG IN</button>
+        </form>
+      </section>
+    </main>
+    <script src="./alerts.js"></script>
+    <script>
+      const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      document.querySelector("#loginForm")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const password = form.querySelector('input[type="password"]').value;
+
+        if (!email || !password) {
+          window.showToast("warning", "Please fill in both email and password.");
+          return;
+        }
+
+        if (!EMAIL_RX.test(email)) {
+          window.showToast("error", "Please enter a valid email address.");
+          return;
+        }
+
+        window.showToast("success", "Welcome back! Logging you in...");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Sign Up - Food &amp; Lifestyle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./signup.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <main class="signup-page">
+      <section class="signup-card" aria-label="Sign up - food and lifestyle">
+        <header class="signup-top">
+          <div class="signup-brand">
+            <img src="./Logo.png" alt="Ecotrack logo" />
+            <h1>SIGN UP</h1>
+          </div>
+          <p class="login-link">Already have an account? <a href="./login.html">LOGIN.</a></p>
+        </header>
+
+        <div class="signup-content">
+          <h2>FOOD &amp; LIFESTYLE</h2>
+          <p class="subtitle">Your daily consumption.</p>
+          <p class="question">How would you describe your daily diet?</p>
+
+          <form class="signup-form" id="stepForm" action="./signup-step-5.html" method="get" novalidate>
+            <label class="select-wrap">
+              <select required>
+                <option value="" selected disabled>Select your diet</option>
+                <option value="meat-heavy">Meat-heavy (most meals include meat)</option>
+                <option value="balanced">Balanced (mix of meat, fish, and plants)</option>
+                <option value="pescatarian">Pescatarian (fish, no meat)</option>
+                <option value="vegetarian">Vegetarian (no meat or fish)</option>
+                <option value="mostly-plant">Mostly plant-based</option>
+                <option value="vegan">Vegan (no animal products)</option>
+              </select>
+            </label>
+
+            <button type="submit" class="next-btn">NEXT</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="./alerts.js"></script>
+    <script>
+      document.querySelector("#stepForm")?.addEventListener("submit", (event) => {
+        const select = event.currentTarget.querySelector("select");
+        if (!select || !select.value) {
+          event.preventDefault();
+          window.showToast("warning", "Please select an option before continuing.");
+        }
+      });
+    </script>
+  </body>
+</html>

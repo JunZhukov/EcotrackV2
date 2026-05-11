@@ -1,0 +1,338 @@
+:root {
+  --font-main: "Poppins", sans-serif;
+  --text-primary: #121815;
+  --text-secondary: #2d3933;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)),
+    url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=80")
+      center / cover no-repeat fixed;
+}
+
+input,
+button,
+textarea,
+select,
+a {
+  font-family: var(--font-main);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(10, 14, 12, 0);
+  z-index: 35;
+  transition: background 0.55s ease;
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
+}
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.28));
+  backdrop-filter: blur(1px);
+  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+}
+
+.splash-logo {
+  width: min(56vw, 420px);
+  opacity: 0;
+  transform: scale(0.72) rotate(-6deg);
+}
+
+.splash-logo svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 24px rgba(83, 219, 255, 0.28));
+}
+
+.splash-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(83, 219, 255, 0.28));
+}
+
+.splash-screen.play .splash-logo {
+  animation: splashReveal 1.2s cubic-bezier(0.2, 0.86, 0.34, 1) forwards,
+    splashFloat 1.7s ease-in-out 1.2s forwards;
+}
+
+.intro-card {
+  width: min(900px, 100%);
+  min-height: 520px;
+  border-radius: 48px;
+  padding: 2.25rem 3rem 3rem;
+  background: linear-gradient(
+      130deg,
+      rgba(225, 241, 232, 0.48) 0%,
+      rgba(214, 233, 219, 0.4) 100%
+    ),
+    rgba(246, 249, 246, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.intro-preload .intro-card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.intro-ready .intro-card {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  pointer-events: auto;
+  transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
+}
+
+.intro-ready .splash-screen {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-exit .hero {
+  opacity: 0;
+  transform: scale(1.02);
+  filter: blur(4px);
+}
+
+body.page-exit::after {
+  background: rgba(10, 14, 12, 0.72);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.2rem;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.brand-mark {
+  width: clamp(64px, 8vw, 96px);
+  height: clamp(64px, 8vw, 96px);
+  overflow: hidden;
+}
+
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform: scale(2);
+  transform-origin: center;
+}
+
+.spotlight {
+  animation: ctaPulse 2.2s ease-in-out 0.4s infinite;
+}
+
+.content {
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content h2 {
+  margin: 0 0 0.15rem;
+  font-size: clamp(2.2rem, 4.9vw, 3.65rem);
+  font-weight: 600;
+  line-height: 1.12;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.content h2 span {
+  display: block;
+  margin-top: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.content p {
+  margin: 1rem auto 2rem;
+  max-width: 520px;
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.65vw, 1.3rem);
+  line-height: 1.45;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.cta-btn {
+  --bg: linear-gradient(120deg, #9eb99a 0%, #afc7a8 100%);
+  --text-color: #0f1211;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  min-height: 52px;
+  border: none;
+  background: var(--bg);
+  color: var(--text-color);
+  padding: 0.95em 1.15em;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.22s ease;
+  border-radius: 10px;
+  opacity: 0.92;
+  letter-spacing: 1.5px;
+  box-shadow: #8ea88b 0px 7px 2px, rgba(0, 0, 0, 0.38) 0px 9px 14px;
+  border: 1px solid rgba(223, 237, 216, 0.72);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.cta-btn:hover,
+.cta-btn:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.cta-btn:active {
+  top: 3px;
+  transform: none;
+  box-shadow: #8ea88b 0px 3px 2px, rgba(0, 0, 0, 0.42) 0px 4px 7px;
+}
+
+.cta-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+}
+
+@keyframes splashReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(-8deg);
+    filter: blur(3px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.06) rotate(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes splashFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-12px) scale(1.04);
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    opacity: 0.94;
+    filter: drop-shadow(0 0 0 rgba(255, 210, 205, 0));
+  }
+  45% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(104, 237, 194, 0.48));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen.play .splash-logo,
+  .spotlight {
+    animation: none;
+  }
+
+  body::after,
+  .hero {
+    transition: none;
+  }
+
+  .splash-screen {
+    transition: none;
+  }
+
+  .intro-ready .intro-card {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .splash-logo {
+    width: min(70vw, 330px);
+  }
+
+  .intro-card {
+    min-height: 500px;
+    border-radius: 32px;
+    padding: 1.75rem 1.25rem 2.2rem;
+  }
+
+  .brand-mark {
+    width: clamp(56px, 14vw, 74px);
+    height: clamp(56px, 14vw, 74px);
+  }
+
+  .brand h1 {
+    font-size: clamp(1.45rem, 7vw, 1.95rem);
+  }
+
+  .content p {
+    font-size: 1rem;
+  }
+
+  .cta-btn {
+    width: 175px;
+    min-height: 48px;
+    font-size: 0.82rem;
+  }
+
+}
