@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./dashboard-gamified.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="main">
+        <header class="topbar">
+          <a class="topbar-brand" href="./home.html" aria-label="Ecotrack home">
+            <img src="./Logo.png" alt="Ecotrack" />
+          </a>
+          <nav class="topbar-nav" aria-label="Primary navigation">
+            <a class="topbar-link" href="./home.html">HOME</a>
+            <a class="topbar-link" href="./overview.html">OVERVIEW</a>
+            <a class="topbar-link is-active" href="./analytics.html">ANALYTICS</a>
+            <a class="topbar-link" href="./log-activity.html">LOG</a>
+            <a class="topbar-link" href="./about.html">ABOUT US</a>
+          </nav>
+          <div class="topbar-actions">
+            <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
+              <span class="streak-flame" aria-hidden="true">🔥</span>
+              <span><span id="streakCount">0</span> day streak</span>
+              <span class="streak-mult" id="streakMult" hidden>x1</span>
+            </div>
+            <a class="topbar-icon" href="./settings.html" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.86l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.86-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.86.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.86l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.86.34h.04A1.7 1.7 0 0 0 10 3.04V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.86-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03Z" />
+              </svg>
+            </a>
+            <a class="topbar-icon" href="#" aria-label="Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.6-4 4.6-6 8-6s6.4 2 8 6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <main class="content">
+          <section class="db-hero db-hero--analytics" aria-label="Emissions analytics summary">
+            <div class="db-hero-leaves" aria-hidden="true">
+              <span class="leaf leaf-1">📈</span>
+              <span class="leaf leaf-2">🌿</span>
+              <span class="leaf leaf-3">📊</span>
+              <span class="leaf leaf-4">🍃</span>
+            </div>
+            <div class="db-hero-text">
+              <p class="db-hero-eyebrow">Insights &amp; trends</p>
+              <h1 class="db-hero-title">Analytics <span>HQ</span></h1>
+              <p class="db-hero-sub">See how your eco-actions are bending the curve, month over month.</p>
+            </div>
+            <div class="db-hero-stat-block">
+              <p class="db-hero-stat-label">Saved vs last month</p>
+              <p class="db-hero-stat" id="dbHeroStat">6.6<span class="db-hero-stat-unit">kg CO₂</span></p>
+              <div class="db-hero-chips">
+                <span class="db-chip db-chip--good">
+                  <span class="db-chip-arrow" aria-hidden="true">▼</span>
+                  <span><strong>4.9%</strong> footprint</span>
+                </span>
+                <span class="db-chip db-chip--neutral">
+                  <span class="db-chip-icon" aria-hidden="true">📅</span>
+                  <span>Last <strong>30 days</strong></span>
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <div class="dashboard-grid dashboard-grid--analytics">
+            <section class="panel panel--improvement panel--analytics-trend">
+              <h2 class="panel-title">Emissions trend</h2>
+              <div class="improvement-body improvement-body--stack">
+                <div class="chart-wrap chart-wrap--tall">
+                  <canvas id="analyticsTrendChart" data-chart="eco-trend"></canvas>
+                </div>
+                <p class="analytics-caption">
+                  Week-over-week comparison for this period vs last month. Detailed category splits live on
+                  <a href="./overview.html">Overview</a>.
+                </p>
+              </div>
+            </section>
+
+            <section class="panel panel--comparison">
+              <h2 class="panel-title">Period comparison</h2>
+              <div class="comparison-grid">
+                <div class="comparison-card">
+                  <span class="comparison-icon" aria-hidden="true">📅</span>
+                  <p class="label">Last 30 days</p>
+                  <p class="value">134.2 kg</p>
+                  <p class="sub">baseline</p>
+                </div>
+                <div class="comparison-card comparison-card--current">
+                  <span class="comparison-icon comparison-icon--good" aria-hidden="true">🌱</span>
+                  <p class="label">This 30 days</p>
+                  <p class="value">127.6 kg</p>
+                  <p class="sub sentiment-good"><span class="trend-arrow" aria-hidden="true">▼</span> −4.9% vs baseline</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel panel--category-mix">
+              <h2 class="panel-title">Share by category</h2>
+              <ul class="category-bars category-bars--gamified">
+                <li data-cat="transport">
+                  <span class="category-name"><span class="category-emoji" aria-hidden="true">🚗</span> Transport</span>
+                  <span class="category-track"><span class="category-fill" style="width: 42%"></span></span>
+                  <span class="category-pct">42%</span>
+                </li>
+                <li data-cat="energy">
+                  <span class="category-name"><span class="category-emoji" aria-hidden="true">💡</span> Energy</span>
+                  <span class="category-track"><span class="category-fill" style="width: 33%"></span></span>
+                  <span class="category-pct">33%</span>
+                </li>
+                <li data-cat="food">
+                  <span class="category-name"><span class="category-emoji" aria-hidden="true">🥗</span> Food</span>
+                  <span class="category-track"><span class="category-fill" style="width: 25%"></span></span>
+                  <span class="category-pct">25%</span>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="./alerts.js"></script>
+    <script src="./dashboard.js"></script>
+    <script src="./gamification.js"></script>
+    <script src="./dashboard-gamified.js"></script>
+  </body>
+</html>

@@ -2,7 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#9eb99a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Ecotrack" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/png" href="./Logo.png" />
+    <link rel="apple-touch-icon" href="./Logo.png" />
     <title>Ecotrack | Sign Up - Transportation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,6 +24,19 @@
   <body>
     <main class="signup-page">
       <section class="signup-card" aria-label="Sign up - transportation">
+        <a href="./signup-step-4.html" class="back-link" aria-label="Go back to previous step">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 5l-7 7 7 7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Back
+        </a>
         <header class="signup-top">
           <div class="signup-brand">
             <img src="./Logo.png" alt="Ecotrack logo" />
@@ -59,5 +80,6 @@
         }
       });
     </script>
+    <script src="./pwa-register.js"></script>
   </body>
 </html>

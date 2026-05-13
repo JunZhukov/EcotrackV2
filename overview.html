@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./dashboard-gamified.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="main">
+        <header class="topbar">
+          <a class="topbar-brand" href="./home.html" aria-label="Ecotrack home">
+            <img src="./Logo.png" alt="Ecotrack" />
+          </a>
+          <nav class="topbar-nav" aria-label="Primary navigation">
+            <a class="topbar-link" href="./home.html">HOME</a>
+            <a class="topbar-link is-active" href="./overview.html">OVERVIEW</a>
+            <a class="topbar-link" href="./analytics.html">ANALYTICS</a>
+            <a class="topbar-link" href="./log-activity.html">LOG</a>
+            <a class="topbar-link" href="./about.html">ABOUT US</a>
+          </nav>
+          <div class="topbar-actions">
+            <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
+              <span class="streak-flame" aria-hidden="true">🔥</span>
+              <span><span id="streakCount">0</span> day streak</span>
+              <span class="streak-mult" id="streakMult" hidden>x1</span>
+            </div>
+            <a class="topbar-icon" href="./settings.html" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.86l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.86-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.86.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.86l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.86.34h.04A1.7 1.7 0 0 0 10 3.04V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.86-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03Z" />
+              </svg>
+            </a>
+            <a class="topbar-icon" href="#" aria-label="Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.6-4 4.6-6 8-6s6.4 2 8 6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <main class="content">
+          <section class="db-hero" aria-label="Eco footprint summary">
+            <div class="db-hero-leaves" aria-hidden="true">
+              <span class="leaf leaf-1">🍃</span>
+              <span class="leaf leaf-2">🌿</span>
+              <span class="leaf leaf-3">🍀</span>
+              <span class="leaf leaf-4">🌱</span>
+            </div>
+            <div class="db-hero-text">
+              <p class="db-hero-eyebrow">Mission control</p>
+              <h1 class="db-hero-title">Your Eco <span>Dashboard</span></h1>
+              <p class="db-hero-sub">Track your monthly carbon footprint and keep the streak alive.</p>
+            </div>
+            <div class="db-hero-stat-block">
+              <p class="db-hero-stat-label">Overall footprint this month</p>
+              <p class="db-hero-stat" id="dbHeroStat">127.6<span class="db-hero-stat-unit">kg CO₂</span></p>
+              <div class="db-hero-chips">
+                <span class="db-chip db-chip--good">
+                  <span class="db-chip-arrow" aria-hidden="true">▼</span>
+                  <span><strong>4.9%</strong> vs last month</span>
+                </span>
+                <span class="db-chip db-chip--neutral">
+                  <span class="db-chip-icon" aria-hidden="true">🎯</span>
+                  <span>Goal: <strong>120 kg</strong></span>
+                </span>
+              </div>
+            </div>
+            <a class="dashboard-log-fab" href="./log-activity.html" aria-label="Log daily activity">
+              <span aria-hidden="true">+</span>
+            </a>
+          </section>
+
+          <section class="db-stats" aria-label="Emission breakdown" id="dbStats">
+            <article class="db-stat-tile db-stat-tile--transport" data-stat="transport">
+              <span class="db-stat-tile-icon" aria-hidden="true">🚗</span>
+              <div class="db-stat-tile-body">
+                <p class="db-stat-tile-label">Transport</p>
+                <p class="db-stat-tile-value"><span data-stat-value>0.0</span><span class="db-stat-tile-unit">kg</span></p>
+                <div class="db-stat-tile-bar"><span data-stat-bar style="width: 0%"></span></div>
+                <p class="db-stat-tile-sub" data-stat-sub>0% of total</p>
+              </div>
+            </article>
+            <article class="db-stat-tile db-stat-tile--food" data-stat="food">
+              <span class="db-stat-tile-icon" aria-hidden="true">🥗</span>
+              <div class="db-stat-tile-body">
+                <p class="db-stat-tile-label">Food</p>
+                <p class="db-stat-tile-value"><span data-stat-value>0.0</span><span class="db-stat-tile-unit">kg</span></p>
+                <div class="db-stat-tile-bar"><span data-stat-bar style="width: 0%"></span></div>
+                <p class="db-stat-tile-sub" data-stat-sub>0% of total</p>
+              </div>
+            </article>
+            <article class="db-stat-tile db-stat-tile--energy" data-stat="energy">
+              <span class="db-stat-tile-icon" aria-hidden="true">💡</span>
+              <div class="db-stat-tile-body">
+                <p class="db-stat-tile-label">Energy</p>
+                <p class="db-stat-tile-value"><span data-stat-value>0.0</span><span class="db-stat-tile-unit">kg</span></p>
+                <div class="db-stat-tile-bar"><span data-stat-bar style="width: 0%"></span></div>
+                <p class="db-stat-tile-sub" data-stat-sub>0% of total</p>
+              </div>
+            </article>
+          </section>
+
+          <div class="dashboard-grid dashboard-grid--gamified">
+
+            <section class="panel panel--improvement">
+              <h2 class="panel-title">Improvement</h2>
+              <div class="improvement-body">
+                <div class="chart-wrap">
+                  <canvas id="improvementChart" data-chart="eco-trend"></canvas>
+                </div>
+                <div class="improvement-stat improvement-stat--gamified">
+                  <span class="improvement-trophy" aria-hidden="true">🏆</span>
+                  <p class="label">You improved by</p>
+                  <p class="big-stat">67.1%</p>
+                  <p class="sub">vs the last month — keep it up!</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel panel--suggestions" id="eco-suggestions" data-ai-state="idle">
+              <div class="suggestions-head">
+                <h2 class="panel-title">Suggestions</h2>
+                <div class="suggestions-meta">
+                  <span class="ai-status" data-ai-status hidden>Asking the EcoTrack AI…</span>
+                  <button type="button" class="ai-refresh" data-ai-refresh aria-label="Refresh AI suggestions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 12a9 9 0 1 1-3-6.7" />
+                      <path d="M21 4v5h-5" />
+                    </svg>
+                    <span>Refresh</span>
+                  </button>
+                </div>
+              </div>
+              <div class="suggestion-cards">
+                <article class="sugg-card sugg-card--transport">
+                  <span class="sugg-icon" aria-hidden="true">🚶</span>
+                  <div class="sugg-body">
+                    <h3 class="sugg-title">Walk or jog short trips</h3>
+                    <p class="sugg-text">Replace short drives with walks to cut transport emissions.</p>
+                  </div>
+                  <span class="sugg-reward">+40 XP</span>
+                </article>
+
+                <article class="sugg-card sugg-card--energy">
+                  <span class="sugg-icon" aria-hidden="true">💻</span>
+                  <div class="sugg-body">
+                    <h3 class="sugg-title">Reduce screen time</h3>
+                    <p class="sugg-text">Less gaming and screen use lowers your energy draw.</p>
+                  </div>
+                  <span class="sugg-reward">+30 XP</span>
+                </article>
+
+                <article class="sugg-card sugg-card--food">
+                  <span class="sugg-icon" aria-hidden="true">🥗</span>
+                  <div class="sugg-body">
+                    <h3 class="sugg-title">Eat less red meat</h3>
+                    <p class="sugg-text">Swap beef for plant-based meals a few days a week.</p>
+                  </div>
+                  <span class="sugg-reward">+50 XP</span>
+                </article>
+
+                <article class="sugg-card sugg-card--bike">
+                  <span class="sugg-icon" aria-hidden="true">🚴</span>
+                  <div class="sugg-body">
+                    <h3 class="sugg-title">Bike instead of drive</h3>
+                    <p class="sugg-text">Use a bike for nearby errands — eco-friendly and healthy.</p>
+                  </div>
+                  <span class="sugg-reward">+60 XP</span>
+                </article>
+              </div>
+            </section>
+
+            <section class="panel panel--progress">
+              <h2 class="panel-title">Your Progress</h2>
+              <div class="progress-grid">
+                <div class="recent-activity-card" id="recentActivities">
+                  <div class="recent-activity-head">
+                    <div>
+                      <h3 class="recent-activity-title">Recent Activities</h3>
+                      <p class="recent-activity-sub">Your latest logged footprint entries.</p>
+                    </div>
+                    <a class="recent-activity-add" href="./log-activity.html" aria-label="Log new activity">
+                      <span aria-hidden="true">+</span>
+                    </a>
+                  </div>
+                  <div class="recent-activity-summary">
+                    <span id="recentActivityCount">0 logs</span>
+                    <strong id="recentActivityTotal">0.0 kg CO₂</strong>
+                  </div>
+                  <ul class="recent-activity-list eco-scroll" id="recentActivityList"></ul>
+                </div>
+
+                <div class="quests-badges-row">
+                <div class="quests-card" id="eco-quests">
+                  <div class="quests-header">
+                    <h3 class="quests-title">Today's Eco-Quests</h3>
+                    <span class="quests-meta" id="questsMeta">0/4 completed today</span>
+                  </div>
+                  <ul class="quest-list" id="questList"></ul>
+                  <div class="main-quests eco-scroll" aria-labelledby="mainQuestsHeading">
+                    <div class="quests-header main-quests-header">
+                      <h3 class="quests-title" id="mainQuestsHeading">
+                        Main quests
+                      </h3>
+                      <span class="quests-meta" id="mainQuestsMeta">0/5</span>
+                    </div>
+                    <ul class="main-quest-list" id="mainQuestList"></ul>
+                  </div>
+                </div>
+
+                <div class="badges-card">
+                  <div class="badges-header">
+                    <h3 class="badges-title">Badges</h3>
+                    <span class="badges-meta" id="badgesMeta">0/50 earned</span>
+                  </div>
+                  <div class="badges-scroll eco-scroll">
+                    <div class="badge-grid" id="badgeGrid"></div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="./alerts.js"></script>
+    <script src="./dashboard.js"></script>
+    <script src="./gamification.js"></script>
+    <script src="./dashboard-gamified.js"></script>
+    <script src="./ai-suggestions.js"></script>
+  </body>
+</html>

@@ -2,7 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#9eb99a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Ecotrack" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/png" href="./Logo.png" />
+    <link rel="apple-touch-icon" href="./Logo.png" />
     <title>Ecotrack | Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,16 +57,50 @@
           </label>
 
           <label class="input-group">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect
+                  x="4"
+                  y="10.5"
+                  width="16"
+                  height="10"
+                  rx="2.25"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                />
+                <path
+                  d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                />
+                <circle cx="12" cy="15.4" r="1.25" fill="currentColor" />
+              </svg>
+            </span>
             <input type="password" placeholder="Password" autocomplete="current-password" required />
           </label>
 
-          <button type="submit" class="auth-login-btn">LOG IN</button>
+          <button type="submit" class="auth-login-btn">SIGN IN</button>
         </form>
       </section>
     </main>
     <script src="./alerts.js"></script>
     <script>
       const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function toast(type, msg) {
+        try {
+          if (typeof window.showToast === "function") window.showToast(type, msg);
+        } catch (err) {
+          console.warn("Toast failed:", err);
+        }
+      }
+
+      function goHome() {
+        window.location.assign("./home.html");
+      }
 
       document.querySelector("#loginForm")?.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -67,17 +109,19 @@
         const password = form.querySelector('input[type="password"]').value;
 
         if (!email || !password) {
-          window.showToast("warning", "Please fill in both email and password.");
+          toast("warning", "Please fill in both email and password.");
           return;
         }
 
         if (!EMAIL_RX.test(email)) {
-          window.showToast("error", "Please enter a valid email address.");
+          toast("error", "Please enter a valid email address.");
           return;
         }
 
-        window.showToast("success", "Welcome back! Logging you in...");
+        toast("success", "Welcome back! Logging you in...");
+        window.setTimeout(goHome, 900);
       });
     </script>
+    <script src="./pwa-register.js"></script>
   </body>
 </html>

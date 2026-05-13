@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | About CarboTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./about.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="main">
+        <header class="topbar">
+          <a class="topbar-brand" href="./home.html" aria-label="Ecotrack home">
+            <img src="./Logo.png" alt="Ecotrack" />
+          </a>
+          <nav class="topbar-nav" aria-label="Primary navigation">
+            <a class="topbar-link" href="./home.html">HOME</a>
+            <a class="topbar-link" href="./overview.html">OVERVIEW</a>
+            <a class="topbar-link" href="./analytics.html">ANALYTICS</a>
+            <a class="topbar-link" href="./log-activity.html">LOG</a>
+            <a class="topbar-link is-active" href="./about.html">ABOUT US</a>
+          </nav>
+          <div class="topbar-actions">
+            <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
+              <span class="streak-flame" aria-hidden="true">🔥</span>
+              <span><span id="streakCount">0</span> day streak</span>
+              <span class="streak-mult" id="streakMult" hidden>x1</span>
+            </div>
+            <a class="topbar-icon" href="./settings.html" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.86l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.86-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.86.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.86l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.86.34h.04A1.7 1.7 0 0 0 10 3.04V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.86-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03Z" />
+              </svg>
+            </a>
+            <a class="topbar-icon" href="#" aria-label="Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.6-4 4.6-6 8-6s6.4 2 8 6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <main class="content magazine">
+          <!-- COVER / EDITORIAL HEADLINE -->
+          <section class="mag-cover">
+            <p class="mag-kicker">CarboTech · Our Story</p>
+            <h1 class="mag-headline">
+              Crafting <em>technology</em> for a <span>greener</span> tomorrow.
+            </h1>
+            <p class="mag-deck">
+              CarboTech is a small team of builders, designers, and researchers turning
+              environmental data into experiences that help everyday people live
+              more sustainably.
+            </p>
+            <div class="mag-meta">
+              <span>Issue 01 · 2026</span>
+              <span class="mag-meta-divider" aria-hidden="true"></span>
+              <span>Featuring EcoTrack</span>
+            </div>
+          </section>
+
+          <!-- BIG VISUAL STRIP -->
+          <section class="mag-visual">
+            <div class="mag-visual-art" aria-hidden="true">
+              <span class="orb orb-1"></span>
+              <span class="orb orb-2"></span>
+              <span class="orb orb-3"></span>
+              <span class="leaf leaf-a">🌿</span>
+              <span class="leaf leaf-b">🌱</span>
+              <span class="leaf leaf-c">🍃</span>
+              <img src="./Logo.png" alt="" class="mag-visual-logo" />
+            </div>
+            <div class="mag-visual-pull">
+              <p class="pull-quote">
+                &ldquo;We believe small daily actions, when guided by clear data,
+                can become the biggest force for change.&rdquo;
+              </p>
+              <p class="pull-by">— The CarboTech Team</p>
+            </div>
+          </section>
+
+          <!-- BY THE NUMBERS -->
+          <section class="mag-stats">
+            <article>
+              <p class="stat-num">3</p>
+              <p class="stat-label">Categories tracked</p>
+              <p class="stat-sub">Food · Transport · Electricity, all in one place.</p>
+            </article>
+            <article>
+              <p class="stat-num">1<span>%</span></p>
+              <p class="stat-label">Better, every day</p>
+              <p class="stat-sub">Tiny daily wins compound into long-term change.</p>
+            </article>
+            <article>
+              <p class="stat-num">∞</p>
+              <p class="stat-label">Possible futures</p>
+              <p class="stat-sub">We're building for the one where the planet wins.</p>
+            </article>
+          </section>
+
+          <!-- MISSION FEATURE -->
+          <section class="mag-feature">
+            <div class="mag-feature-meta">
+              <span class="mag-label">Feature 01</span>
+              <p class="mag-section">The Mission</p>
+            </div>
+            <div class="mag-feature-grid">
+              <div class="mag-feature-art mag-feature-art--mission" aria-hidden="true">
+                <div class="art-card art-card--mission">
+                  <span class="art-emoji"></span>
+                  <p class="art-label">Mission</p>
+                  <p class="art-title">Awareness in,<br />action out.</p>
+                </div>
+              </div>
+              <div class="mag-feature-text">
+                <h2>
+                  Building tools that turn awareness into <em>everyday action.</em>
+                </h2>
+                <p class="mag-lede">
+                  Carbotech is committed to developing accessible, engaging, and
+                  impactful digital solutions that help users understand, monitor,
+                  and reduce their environmental footprint.
+                </p>
+                <p>
+                  The team strives to transform complex environmental data into
+                  simple, understandable, and actionable insights that encourage
+                  positive behavioral change.
+                </p>
+                <p>
+                  By focusing on user experience, innovation, and sustainability,
+                  Carbotech seeks to create systems that not only provide information
+                  but also motivate individuals to adopt eco-friendly habits and
+                  make more responsible lifestyle choices.
+                </p>
+                <p>
+                  Through the development of <strong>EcoTrack</strong> and future
+                  sustainability-focused projects, Carbotech aims to bridge the gap
+                  between awareness and action, empowering users to become active
+                  participants in creating a cleaner, healthier, and more
+                  sustainable world for future generations.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- DIVIDER QUOTE -->
+          <section class="mag-divider">
+            <span aria-hidden="true">✶</span>
+            <p>
+              We design for the small choices. Because small choices, repeated,
+              are how the world actually changes.
+            </p>
+            <span aria-hidden="true">✶</span>
+          </section>
+
+          <!-- VISION FEATURE (reverse) -->
+          <section class="mag-feature mag-feature--reverse">
+            <div class="mag-feature-meta">
+              <span class="mag-label">Feature 02</span>
+              <p class="mag-section">The Vision</p>
+            </div>
+            <div class="mag-feature-grid">
+              <div class="mag-feature-text">
+                <h2>
+                  A future where <em>technology</em> helps everyone live
+                  responsibly.
+                </h2>
+                <p class="mag-lede">
+                  Carbotech envisions a future where technology empowers
+                  individuals and communities to become more environmentally aware
+                  and responsible in their daily lives.
+                </p>
+                <p>
+                  The team aspires to create innovative and user-centered digital
+                  solutions that encourage sustainable habits, promote environmental
+                  consciousness, and inspire meaningful action toward reducing
+                  carbon emissions and protecting the planet.
+                </p>
+                <p>
+                  Through creativity, collaboration, and continuous improvement,
+                  Carbotech aims to contribute to a more sustainable and
+                  environmentally responsible society where people are equipped
+                  with the knowledge and tools needed to make informed decisions
+                  for a better future.
+                </p>
+              </div>
+              <div class="mag-feature-art mag-feature-art--vision" aria-hidden="true">
+                <div class="art-card art-card--vision">
+                  <span class="art-emoji"></span>
+                  <p class="art-label">Vision</p>
+                  <p class="art-title">A greener<br />everyday.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- VALUES STRIP -->
+          <section class="mag-values">
+            <p class="mag-label">What we stand for</p>
+            <h2>Three values, repeated daily.</h2>
+            <div class="mag-values-grid">
+              <article>
+                <p class="val-num">01</p>
+                <h3>Clarity</h3>
+                <p>Turning dense environmental data into something anyone can read at a glance.</p>
+              </article>
+              <article>
+                <p class="val-num">02</p>
+                <h3>Care</h3>
+                <p>Designing with empathy for users, communities, and the planet they share.</p>
+              </article>
+              <article>
+                <p class="val-num">03</p>
+                <h3>Consistency</h3>
+                <p>Helping people show up for the planet a little better, every single day.</p>
+              </article>
+            </div>
+          </section>
+
+          <!-- TEAM FEATURE -->
+          <section class="mag-team">
+            <div class="mag-feature-meta">
+              <span class="mag-label">Feature 03</span>
+              <p class="mag-section">The Team</p>
+            </div>
+            <h2>Meet the makers behind <em>CarboTech.</em></h2>
+            <p class="mag-team-deck">
+              A small, multidisciplinary team building EcoTrack and future
+              sustainability tools. Replace these placeholders with member photos
+              and bios when ready.
+            </p>
+            <div class="mag-team-grid">
+              <article class="team-feature">
+                <div class="team-photo team-photo--lead team-photo--photo">
+                  <img src="./denise.png" alt="Denise, Project Lead" />
+                </div>
+                <p class="team-role">Project Lead</p>
+                <h3>Denise Arteta</h3>
+                <p>
+                  Coordinates the team's direction, keeps the project focused, and
+                  shapes how ideas become product decisions.
+                </p>
+              </article>
+              <article class="team-feature">
+                <div class="team-photo team-photo--design team-photo--photo">
+                  <img src="./ron.png" alt="Ron Aiden Litrero, UI / UX Designer" />
+                </div>
+                <p class="team-role">UI / UX Designer</p>
+                <h3>Ron Aiden Litrero</h3>
+                <p>
+                  Crafts the look, feel, and flow of EcoTrack so sustainability
+                  feels intuitive rather than intimidating.
+                </p>
+              </article>
+              <article class="team-feature">
+                <div class="team-photo team-photo--dev team-photo--photo">
+                  <img src="./charles.jpg" alt="Charles Landon Rodas, Frontend Developer" />
+                </div>
+                <p class="team-role">Frontend Developer</p>
+                <h3>Charles Landon Rodas</h3>
+                <p>
+                  Builds the dashboard, gamification, and the responsive flows that
+                  power EcoTrack across devices.
+                </p>
+              </article>
+              <article class="team-feature">
+                <div class="team-photo team-photo--research team-photo--photo">
+                  <img src="./sam.jpg" alt="Sam Godwin Haboc, Data &amp; Research" />
+                </div>
+                <p class="team-role">Data &amp; Research</p>
+                <h3>Sam Godwin Haboc</h3>
+                <p>
+                  Supports the carbon calculator, sustainability research, and the
+                  factors that shape EcoTrack's insights.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- CTA OUTRO -->
+          <section class="mag-outro">
+            <p class="mag-label">Continue reading</p>
+            <h2>Open EcoTrack and start your sustainability journey.</h2>
+            <div class="mag-outro-actions">
+              <a class="mag-cta mag-cta--primary" href="./home.html">Open EcoTrack</a>
+              <a class="mag-cta mag-cta--ghost" href="./overview.html">Visit the dashboard</a>
+            </div>
+            <p class="mag-colophon">© 2026 CarboTech · Crafted for a greener tomorrow.</p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="./alerts.js"></script>
+    <script src="./gamification.js"></script>
+    <script src="./pwa-register.js"></script>
+  </body>
+</html>

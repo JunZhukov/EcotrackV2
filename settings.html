@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecotrack | Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./settings.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="main">
+        <header class="topbar">
+          <a class="topbar-brand" href="./home.html" aria-label="Ecotrack home">
+            <img src="./Logo.png" alt="Ecotrack" />
+          </a>
+          <nav class="topbar-nav" aria-label="Primary navigation">
+            <a class="topbar-link" href="./home.html">HOME</a>
+            <a class="topbar-link" href="./overview.html">OVERVIEW</a>
+            <a class="topbar-link" href="./analytics.html">ANALYTICS</a>
+            <a class="topbar-link" href="./log-activity.html">LOG</a>
+            <a class="topbar-link" href="./about.html">ABOUT US</a>
+          </nav>
+          <div class="topbar-actions">
+            <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
+              <span class="streak-flame" aria-hidden="true">🔥</span>
+              <span><span id="streakCount">0</span> day streak</span>
+              <span class="streak-mult" id="streakMult" hidden>x1</span>
+            </div>
+            <a class="topbar-icon is-active" href="./settings.html" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.86l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.86-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.86.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.86l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.86.34h.04A1.7 1.7 0 0 0 10 3.04V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.86-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03Z" />
+              </svg>
+            </a>
+            <a class="topbar-icon" href="#" aria-label="Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.6-4 4.6-6 8-6s6.4 2 8 6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <main class="content settings-content eco-scroll">
+          <header class="settings-header">
+            <h1 class="settings-title">Settings</h1>
+            <p class="settings-subtitle">Customize your EcoTrack experience.</p>
+          </header>
+
+          <div class="settings-grid">
+            <!-- PREFERENCES -->
+            <section class="settings-panel" aria-labelledby="prefHeading">
+              <div class="settings-panel-head">
+                <span class="settings-icon settings-icon--pref" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="7" x2="14" y2="7" />
+                    <line x1="18" y1="7" x2="20" y2="7" />
+                    <line x1="4" y1="12" x2="8" y2="12" />
+                    <line x1="12" y1="12" x2="20" y2="12" />
+                    <line x1="4" y1="17" x2="16" y2="17" />
+                    <line x1="20" y1="17" x2="20" y2="17" />
+                    <circle cx="16" cy="7" r="2" />
+                    <circle cx="10" cy="12" r="2" />
+                    <circle cx="18" cy="17" r="2" />
+                  </svg>
+                </span>
+                <div>
+                  <h2 class="settings-panel-title" id="prefHeading">Preferences</h2>
+                  <p class="settings-panel-sub">Choose how EcoTrack looks.</p>
+                </div>
+              </div>
+
+              <div class="theme-switch" role="radiogroup" aria-label="Theme">
+                <button
+                  type="button"
+                  class="theme-option"
+                  data-theme-value="light"
+                  role="radio"
+                  aria-checked="true"
+                >
+                  <span class="theme-preview theme-preview--light" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="4" />
+                      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </svg>
+                  </span>
+                  <div class="theme-text">
+                    <span class="theme-name">Light Mode</span>
+                    <span class="theme-desc">Bright and sunny.</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  class="theme-option"
+                  data-theme-value="dark"
+                  role="radio"
+                  aria-checked="false"
+                >
+                  <span class="theme-preview theme-preview--dark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+                    </svg>
+                  </span>
+                  <div class="theme-text">
+                    <span class="theme-name">Night Mode</span>
+                    <span class="theme-desc">Easier on the eyes.</span>
+                  </div>
+                </button>
+              </div>
+            </section>
+
+            <!-- NOTIFICATIONS -->
+            <section class="settings-panel" aria-labelledby="notifHeading">
+              <div class="settings-panel-head">
+                <span class="settings-icon settings-icon--notif" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9a6 6 0 0 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9Z" />
+                    <path d="M10 19a2 2 0 0 0 4 0" />
+                  </svg>
+                </span>
+                <div>
+                  <h2 class="settings-panel-title" id="notifHeading">Notifications</h2>
+                  <p class="settings-panel-sub">Decide what you want to hear about.</p>
+                </div>
+              </div>
+
+              <ul class="settings-list" id="notifList">
+                <li class="settings-row">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Daily quest reminders</p>
+                    <p class="settings-row-sub">Get a nudge to complete today's eco-quests.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" data-notif="dailyQuests" checked />
+                    <span class="switch-track" aria-hidden="true"></span>
+                  </label>
+                </li>
+                <li class="settings-row">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Streak warnings</p>
+                    <p class="settings-row-sub">Alert me before I'm about to break a streak.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" data-notif="streakWarnings" checked />
+                    <span class="switch-track" aria-hidden="true"></span>
+                  </label>
+                </li>
+                <li class="settings-row">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Achievement unlocks</p>
+                    <p class="settings-row-sub">Celebrate when you earn a new badge.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" data-notif="achievements" checked />
+                    <span class="switch-track" aria-hidden="true"></span>
+                  </label>
+                </li>
+                <li class="settings-row">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Weekly summary</p>
+                    <p class="settings-row-sub">A recap of your impact every Sunday.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" data-notif="weeklySummary" />
+                    <span class="switch-track" aria-hidden="true"></span>
+                  </label>
+                </li>
+                <li class="settings-row">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Eco tips & news</p>
+                    <p class="settings-row-sub">Occasional ideas to lower your footprint.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" data-notif="ecoTips" />
+                    <span class="switch-track" aria-hidden="true"></span>
+                  </label>
+                </li>
+              </ul>
+            </section>
+
+            <!-- LEGAL -->
+            <section class="settings-panel settings-panel--legal" aria-labelledby="legalHeading">
+              <div class="settings-panel-head">
+                <span class="settings-icon settings-icon--legal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3 4 6v6c0 4.6 3.2 8.4 8 9 4.8-.6 8-4.4 8-9V6l-8-3Z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </span>
+                <div>
+                  <h2 class="settings-panel-title" id="legalHeading">Legal & Privacy</h2>
+                  <p class="settings-panel-sub">The boring but important stuff.</p>
+                </div>
+              </div>
+
+              <ul class="settings-list">
+                <li class="settings-row settings-row--action" data-open-doc="terms">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Terms and Conditions</p>
+                    <p class="settings-row-sub">Rules for using EcoTrack.</p>
+                  </div>
+                  <span class="settings-chevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </span>
+                </li>
+                <li class="settings-row settings-row--action" data-open-doc="privacy">
+                  <div class="settings-row-text">
+                    <p class="settings-row-title">Privacy Policy</p>
+                    <p class="settings-row-sub">How your data is collected and handled.</p>
+                  </div>
+                  <span class="settings-chevron" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- ACCOUNT -->
+            <section class="settings-panel" aria-labelledby="acctHeading">
+              <div class="settings-panel-head">
+                <span class="settings-icon settings-icon--account" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="3.6" />
+                    <path d="M5 20c1.4-3.4 3.9-5 7-5s5.6 1.6 7 5" />
+                  </svg>
+                </span>
+                <div>
+                  <h2 class="settings-panel-title" id="acctHeading">Account</h2>
+                  <p class="settings-panel-sub">Manage your session and data.</p>
+                </div>
+              </div>
+
+              <div class="settings-actions">
+                <button type="button" class="settings-btn settings-btn--ghost" id="resetProgress">
+                  Reset Progress
+                </button>
+                <button type="button" class="settings-btn settings-btn--danger" id="signOut">
+                  Sign Out
+                </button>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- LEGAL MODAL -->
+    <div class="legal-modal" id="legalModal" hidden>
+      <div class="legal-overlay" data-close="modal"></div>
+      <div class="legal-dialog" role="dialog" aria-labelledby="legalTitle" aria-modal="true">
+        <header class="legal-head">
+          <h2 class="legal-title" id="legalTitle">Document</h2>
+          <button type="button" class="legal-close" data-close="modal" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </button>
+        </header>
+        <div class="legal-body eco-scroll" id="legalBody"></div>
+        <footer class="legal-foot">
+          <button type="button" class="settings-btn" data-close="modal">Got it</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./alerts.js"></script>
+    <script src="./gamification.js"></script>
+    <script src="./settings.js"></script>
+  </body>
+</html>

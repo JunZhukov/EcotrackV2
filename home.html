@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#9eb99a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Ecotrack" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/png" href="./Logo.png" />
+    <link rel="apple-touch-icon" href="./Logo.png" />
+    <title>Ecotrack | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./home.css" />
+    <link rel="stylesheet" href="./alerts.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="main">
+        <header class="topbar">
+          <a class="topbar-brand" href="./home.html" aria-label="Ecotrack home">
+            <img src="./Logo.png" alt="Ecotrack" />
+          </a>
+          <nav class="topbar-nav" aria-label="Primary navigation">
+            <a class="topbar-link is-active" href="./home.html">HOME</a>
+            <a class="topbar-link" href="./overview.html">OVERVIEW</a>
+            <a class="topbar-link" href="./analytics.html">ANALYTICS</a>
+            <a class="topbar-link" href="./log-activity.html">LOG</a>
+            <a class="topbar-link" href="./about.html">ABOUT US</a>
+          </nav>
+          <div class="topbar-actions">
+            <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
+              <span class="streak-flame" aria-hidden="true">🔥</span>
+              <span><span id="streakCount">0</span> day streak</span>
+              <span class="streak-mult" id="streakMult" hidden>x1</span>
+            </div>
+            <a class="topbar-icon" href="./settings.html" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.86l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.86-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.86.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.86l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.86.34h.04A1.7 1.7 0 0 0 10 3.04V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.86-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.04a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03Z" />
+              </svg>
+            </a>
+            <a class="topbar-icon" href="#" aria-label="Profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.6-4 4.6-6 8-6s6.4 2 8 6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <main class="content">
+          <div class="home-dashboard">
+            <!-- HERO -->
+            <section class="home-hero" aria-labelledby="homeGreeting">
+              <div class="home-hero-leaves" aria-hidden="true">
+                <span class="leaf leaf-1">🍃</span>
+                <span class="leaf leaf-2">🌿</span>
+                <span class="leaf leaf-3">🍀</span>
+                <span class="leaf leaf-4">🌱</span>
+              </div>
+              <div class="home-hero-text">
+                <p class="home-hero-eyebrow">Mission control</p>
+                <h1 class="home-greeting" id="homeGreeting">
+                  Welcome, <span id="homeUserName">Eco Champion</span>!
+                </h1>
+                <p class="home-quote">
+                  &ldquo;Do not wait for a change of environment before you act. Cause a change of environment through action.&rdquo;
+                </p>
+              </div>
+              <div class="home-hero-actions" aria-label="Quick actions">
+                <a class="home-qbtn home-qbtn--green" href="./log-activity.html">
+                  <span class="home-qbtn-icon" aria-hidden="true">📝</span>
+                  <span>Log Activity</span>
+                </a>
+                <a class="home-qbtn home-qbtn--blue" href="./overview.html#eco-suggestions">
+                  <span class="home-qbtn-icon" aria-hidden="true">⚡</span>
+                  <span>Quick Log</span>
+                </a>
+                <a class="home-qbtn home-qbtn--violet" href="./analytics.html">
+                  <span class="home-qbtn-icon" aria-hidden="true">📊</span>
+                  <span>Analytics</span>
+                </a>
+              </div>
+            </section>
+
+            <!-- STAT TILES -->
+            <section class="home-stats" aria-label="Champion stats">
+              <article class="stat-tile stat-tile--level">
+                <span class="stat-tile-icon" aria-hidden="true">🏆</span>
+                <div class="stat-tile-body">
+                  <p class="stat-tile-label">Level</p>
+                  <p class="stat-tile-value" id="statLevel">1</p>
+                </div>
+              </article>
+              <article class="stat-tile stat-tile--xp">
+                <span class="stat-tile-icon" aria-hidden="true">⚡</span>
+                <div class="stat-tile-body">
+                  <p class="stat-tile-label">Total XP</p>
+                  <p class="stat-tile-value" id="statXp">0</p>
+                </div>
+              </article>
+              <article class="stat-tile stat-tile--quests">
+                <span class="stat-tile-icon" aria-hidden="true">🎯</span>
+                <div class="stat-tile-body">
+                  <p class="stat-tile-label">Quests today</p>
+                  <p class="stat-tile-value" id="statQuests">0/4</p>
+                </div>
+              </article>
+              <article class="stat-tile stat-tile--badges">
+                <span class="stat-tile-icon" aria-hidden="true">🏅</span>
+                <div class="stat-tile-body">
+                  <p class="stat-tile-label">Badges</p>
+                  <p class="stat-tile-value" id="statBadges">0/50</p>
+                </div>
+              </article>
+            </section>
+
+            <!-- MAIN GAMIFIED ROW -->
+            <section class="home-focus" aria-label="Your eco progress">
+              <!-- QUICK ACTIONS (replaces the old eco-level card position) -->
+              <article class="home-card home-card--actions" aria-label="Eco level and progress">
+                <p class="home-status-line">
+                  <span class="home-status-dot" aria-hidden="true"></span>
+                  <span id="homeWeeklyStatusText">You are on track with your weekly goal!</span>
+                </p>
+                <div class="home-actions-level">
+                  <div class="home-card-head">
+                    <p class="home-card-label">Eco level</p>
+                    <span class="home-card-badge" id="homeLevelBadge">Lv 1</span>
+                  </div>
+
+                  <div class="xp-ring-wrap">
+                    <svg class="xp-ring" viewBox="0 0 120 120" aria-hidden="true">
+                      <circle class="xp-ring-track" cx="60" cy="60" r="52" />
+                      <circle class="xp-ring-fill" id="xpRingFill" cx="60" cy="60" r="52" />
+                    </svg>
+                    <div class="xp-ring-center">
+                      <span class="xp-ring-emoji" id="homeLevelIcon" aria-hidden="true">🌱</span>
+                    </div>
+                  </div>
+
+                  <h2 class="home-card-title" id="homeLevelTier">Seedling — Level 1</h2>
+                  <p class="home-xp-line">
+                    <span id="homeXpProgress">0</span>
+                    <span class="home-xp-sep">/</span>
+                    <span id="homeXpMax">500</span>
+                    <span class="home-xp-unit">XP</span>
+                  </p>
+                  <p class="home-card-sub" id="homeLevelCaption">
+                    Complete dashboard quests to earn XP and grow your impact.
+                  </p>
+                </div>
+                <div class="home-quick-buttons home-mini-stats" role="list">
+                  <div class="hero-chip" role="listitem">
+                    <span class="hero-chip-icon" aria-hidden="true">⚡</span>
+                    <span class="hero-chip-label">XP today</span>
+                    <span class="hero-chip-value" id="heroXpToday">+0</span>
+                  </div>
+                  <div class="hero-chip" role="listitem">
+                    <span class="hero-chip-icon" aria-hidden="true">🔥</span>
+                    <span class="hero-chip-label">Streak</span>
+                    <span class="hero-chip-value" id="heroStreakChip">0 days</span>
+                  </div>
+                  <div class="hero-chip" role="listitem">
+                    <span class="hero-chip-icon" aria-hidden="true">🌍</span>
+                    <span class="hero-chip-label">Saved this week</span>
+                    <span class="hero-chip-value" id="heroSavedChip">0 kg CO₂</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- TODAY'S MISSIONS -->
+              <article class="home-card home-card--missions">
+                <div class="home-card-head">
+                  <p class="home-card-label">Today's missions</p>
+                  <span class="home-card-badge" id="missionsBadge">0/4</span>
+                </div>
+
+                <div class="missions-progress">
+                  <div class="missions-progress-fill" id="missionsProgressFill"></div>
+                </div>
+
+                <ul class="missions-list" id="missionsList">
+                  <!-- populated by JS -->
+                </ul>
+
+                <a class="missions-cta" href="./overview.html#eco-quests">
+                  <span>Open missions on dashboard</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="M13 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </article>
+
+              <!-- STREAK + TIP STACK -->
+              <div class="home-side-stack">
+                <article class="home-card home-card--streak home-card--featured">
+                  <div class="home-card-head">
+                    <p class="home-card-label">Streak central</p>
+                    <span class="home-card-badge home-card-badge--mult" id="streakMultBadge" hidden>x1</span>
+                  </div>
+
+                  <div class="lantern" aria-hidden="true">
+                    <span class="lantern-glow"></span>
+                    <span class="lantern-emoji">🏮</span>
+                  </div>
+
+                  <p class="home-streak-days" id="homeStreakDays">0 Days</p>
+                  <p class="home-card-meta">Current daily action streak</p>
+
+                  <div class="streak-week" aria-label="This week's streak">
+                    <span class="streak-day" data-streak-day="0"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Mon</span></span>
+                    <span class="streak-day" data-streak-day="1"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Tue</span></span>
+                    <span class="streak-day" data-streak-day="2"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Wed</span></span>
+                    <span class="streak-day" data-streak-day="3"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Thu</span></span>
+                    <span class="streak-day" data-streak-day="4"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Fri</span></span>
+                    <span class="streak-day" data-streak-day="5"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Sat</span></span>
+                    <span class="streak-day" data-streak-day="6"><span class="streak-day-flame">🔥</span><span class="streak-day-label">Sun</span></span>
+                  </div>
+
+                  <p class="home-card-sub" id="homeStreakSubtitle">
+                    Open your dashboard and complete a quest to start the lantern.
+                  </p>
+                </article>
+
+                <article class="home-card home-card--tip">
+                  <div class="home-card-head">
+                    <p class="home-card-label">Daily eco-tip</p>
+                    <span class="home-card-art home-card-art--small" aria-hidden="true">💡</span>
+                  </div>
+                  <span class="home-tip-chip" id="homeTipChip">Transportation tip</span>
+                  <p class="home-card-sub home-card-sub--strong" id="homeTipBody">
+                    Consider walking for trips under 1 km.
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <!-- BADGE SHOWCASE -->
+            <section class="home-badge-showcase" aria-labelledby="badgeShowcaseTitle">
+              <div class="home-card-head">
+                <p class="home-card-label" id="badgeShowcaseTitle">Achievement showcase</p>
+                <a class="badge-showcase-link" href="./overview.html#badgeGrid">
+                  <span>See all</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </a>
+              </div>
+              <div class="badge-strip eco-scroll" id="homeBadgeStrip">
+                <!-- populated by JS -->
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="./alerts.js"></script>
+    <script src="./gamification.js"></script>
+    <script src="./home.js"></script>
+    <script src="./pwa-register.js"></script>
+  </body>
+</html>
