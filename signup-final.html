@@ -45,7 +45,7 @@
           <p class="login-link">Already have an account? <a href="./login.html">LOGIN.</a></p>
         </header>
 
-        <form class="signup-form-stack" id="signupForm" action="./login.html" method="get" novalidate>
+        <form class="signup-form-stack" id="signupForm" novalidate>
           <label class="field">
             <span class="field-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -114,35 +114,49 @@
         </form>
       </section>
     </main>
+    <script src="./api-client.js"></script>
     <script src="./alerts.js"></script>
     <script>
       const SIGNUP_EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      document.querySelector("#signupForm")?.addEventListener("submit", (event) => {
+      document.querySelector("#signupForm")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
         const form = event.currentTarget;
+        const btn = form.querySelector('button[type="submit"]');
         const email = form.querySelector('input[type="email"]').value.trim();
         const username = form.querySelector('input[type="text"]').value.trim();
         const password = form.querySelector('input[type="password"]').value;
 
         if (!email || !username || !password) {
-          event.preventDefault();
           window.showToast("error", "Please complete all fields before signing up.");
           return;
         }
 
         if (!SIGNUP_EMAIL_RX.test(email)) {
-          event.preventDefault();
           window.showToast("error", "Please enter a valid email address.");
           return;
         }
 
-        if (password.length < 6) {
-          event.preventDefault();
-          window.showToast("warning", "Password must be at least 6 characters.");
+        if (password.length < 8) {
+          window.showToast("warning", "Password must be at least 8 characters.");
           return;
         }
 
-        window.showToast("success", "Account created! Redirecting to login...");
+        if (btn) btn.disabled = true;
+        try {
+          await window.EcoApi.register(email, username, password, username);
+          window.showToast("success", "Account created! Taking you home...");
+          window.setTimeout(() => window.location.assign("./home.html"), 700);
+        } catch (err) {
+          const msg =
+            err.code === "conflict"
+              ? "Email or username is already taken."
+              : err.code === "db_unavailable"
+                ? "Server database is offline. Try again shortly."
+                : err.message || "Could not create account.";
+          window.showToast("error", msg);
+          if (btn) btn.disabled = false;
+        }
       });
     </script>
     <script src="./pwa-register.js"></script>

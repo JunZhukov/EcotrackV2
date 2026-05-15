@@ -153,6 +153,30 @@
     return `${Number(value || 0).toFixed(1)} kg CO₂`;
   }
 
+  function writeLogs(logs) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+    } catch (_) {
+      /* storage unavailable — ignore */
+    }
+  }
+
+  async function deleteLog(id) {
+    const logs = readLogs();
+    const next = logs.filter((log) => String(log.id) !== String(id));
+    if (next.length === logs.length) return;
+    writeLogs(next);
+    if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+      try {
+        await window.EcoApi.deleteActivityLog(String(id));
+      } catch (_) {}
+    }
+    render();
+    window.dispatchEvent(
+      new CustomEvent("ecotrack:logs-changed", { detail: { reason: "delete" } })
+    );
+  }
+
   function render() {
     const logs = readLogs();
     const latest = logs.slice(0, 5);
@@ -174,6 +198,7 @@
     latest.forEach((log) => {
       const item = document.createElement("li");
       item.className = "recent-activity-item";
+      if (log.id != null) item.dataset.logId = String(log.id);
 
       const cats = [];
       if (log.includeFood !== false && log.foodKg > 0) cats.push("🥗");
@@ -183,11 +208,25 @@
 
       item.innerHTML = `
         <span class="recent-activity-icon" aria-hidden="true">${headIcon}</span>
-        <div>
+        <div class="recent-activity-body">
           <p class="recent-activity-name"></p>
           <p class="recent-activity-meta"></p>
           <span class="recent-activity-footprint"></span>
         </div>
+        <button
+          type="button"
+          class="recent-activity-delete"
+          aria-label="Delete log"
+          title="Delete this log"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18" />
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
+          </svg>
+        </button>
       `;
 
       const parts = [];
@@ -212,11 +251,34 @@
       }
       item.querySelector(".recent-activity-meta").textContent = metaParts.join(" • ");
       item.querySelector(".recent-activity-footprint").textContent = formatKg(log.totalKg);
+
+      const delBtn = item.querySelector(".recent-activity-delete");
+      delBtn.addEventListener("click", () => {
+        const confirmed = window.confirm(
+          `Delete this log?\n\n${title}\n${formatKg(log.totalKg)}\n\nThis can't be undone.`
+        );
+        if (!confirmed) return;
+        deleteLog(log.id != null ? log.id : log.createdAt);
+      });
+
       list.appendChild(item);
     });
   }
 
-  render();
+  function start() {
+    render();
+    window.addEventListener("ecotrack:api-ready", render);
+  }
+
+  if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+    window.__ecoApiReady.then(start);
+  } else {
+    start();
+  }
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === STORAGE_KEY) render();
+  });
 })();
 
 (function emissionBreakdown() {
@@ -273,10 +335,19 @@
     setTile(tiles.energy, totals.energy, pct(totals.energy));
   }
 
-  render();
+  function start() {
+    render();
+    window.addEventListener("ecotrack:api-ready", render);
+  }
 
-  // Re-render if another tab logs an activity.
+  if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+    window.__ecoApiReady.then(start);
+  } else {
+    start();
+  }
+
   window.addEventListener("storage", (event) => {
     if (event.key === STORAGE_KEY) render();
   });
+  window.addEventListener("ecotrack:logs-changed", render);
 })();

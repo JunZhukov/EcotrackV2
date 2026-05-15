@@ -354,66 +354,23 @@
     /* --- BADGES --- */
     renderBadges(state);
 
-    /* --- QUICK ACTIONS POPUPS --- */
-    attachQuickActionPopups();
-
     /* --- STATUS LINE --- */
     const statusParagraph = document.getElementById("homeWeeklyStatusText");
     if (statusParagraph)
       statusParagraph.textContent = weeklyStatusCopy(streak, completedToday);
   }
 
-  const QUICK_ACTION_INFO = {
-    "Log Activity": {
-      icon: "📝",
-      name: "Log Activity",
-      desc: "Open today's eco-quests and tick off the habits you've completed.",
-      statusLabel: "Quick action",
-    },
-    "Quick Log": {
-      icon: "⚡",
-      name: "Quick Log",
-      desc: "Jump straight to your personalised eco-suggestions.",
-      statusLabel: "Quick action",
-    },
-    Analytics: {
-      icon: "📊",
-      name: "Analytics",
-      desc: "See your week-over-week emissions trends and detailed insights.",
-      statusLabel: "Quick action",
-    },
-  };
-
-  function attachQuickActionPopups() {
-    const buttons = document.querySelectorAll(".home-qbtn");
-    buttons.forEach((btn) => {
-      if (btn.dataset.popupWired === "1") return;
-      const labelEl = btn.querySelector("span:not(.home-qbtn-icon)");
-      const label = (labelEl ? labelEl.textContent : btn.textContent || "").trim();
-      const def = QUICK_ACTION_INFO[label];
-      if (!def) return;
-
-      const show = () => {
-        if (typeof window.__ecoShowBadgePop === "function") {
-          window.__ecoShowBadgePop(btn, def, true);
-        }
-      };
-      const hide = () => {
-        if (typeof window.__ecoHideBadgePop === "function") {
-          window.__ecoHideBadgePop();
-        }
-      };
-      btn.addEventListener("mouseenter", show);
-      btn.addEventListener("focus", show);
-      btn.addEventListener("mouseleave", hide);
-      btn.addEventListener("blur", hide);
-      btn.dataset.popupWired = "1";
-    });
+  function start() {
+    if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+      window.__ecoApiReady.then(hydrate);
+    } else {
+      hydrate();
+    }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", hydrate);
+    document.addEventListener("DOMContentLoaded", start);
   } else {
-    hydrate();
+    start();
   }
 })();

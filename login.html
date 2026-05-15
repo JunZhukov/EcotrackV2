@@ -86,6 +86,7 @@
         </form>
       </section>
     </main>
+    <script src="./api-client.js"></script>
     <script src="./alerts.js"></script>
     <script>
       const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -102,9 +103,10 @@
         window.location.assign("./home.html");
       }
 
-      document.querySelector("#loginForm")?.addEventListener("submit", (event) => {
+      document.querySelector("#loginForm")?.addEventListener("submit", async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
+        const btn = form.querySelector('button[type="submit"]');
         const email = form.querySelector('input[type="email"]').value.trim();
         const password = form.querySelector('input[type="password"]').value;
 
@@ -118,8 +120,21 @@
           return;
         }
 
-        toast("success", "Welcome back! Logging you in...");
-        window.setTimeout(goHome, 900);
+        if (btn) btn.disabled = true;
+        try {
+          await window.EcoApi.login(email, password);
+          toast("success", "Welcome back! Logging you in...");
+          window.setTimeout(goHome, 600);
+        } catch (err) {
+          const msg =
+            err.code === "invalid_credentials"
+              ? "Wrong email or password."
+              : err.code === "db_unavailable"
+                ? "Server database is offline. Try again shortly."
+                : "Could not sign in. Check your connection.";
+          toast("error", msg);
+          if (btn) btn.disabled = false;
+        }
       });
     </script>
     <script src="./pwa-register.js"></script>

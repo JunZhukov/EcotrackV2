@@ -21,6 +21,11 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
+const { connectDb, isDbReady } = require("./db/connect");
+const authRoutes = require("./routes/auth");
+const activityLogRoutes = require("./routes/activityLogs");
+const gamificationRoutes = require("./routes/gamification");
+const userRoutes = require("./routes/user");
 
 const PORT = Number(process.env.PORT) || 3000;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
@@ -219,19 +224,40 @@ app.post("/api/suggestions", async (req, res) => {
   }
 });
 
+app.use("/api/auth", authRoutes);
+app.use("/api/me", userRoutes);
+app.use("/api/activity-logs", activityLogRoutes);
+app.use("/api/gamification", gamificationRoutes);
+
 app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
     aiReady: Boolean(GEMINI_API_KEY),
     model: GEMINI_MODEL,
+    dbReady: isDbReady(),
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`EcoTrack server running on http://localhost:${PORT}`);
-  if (!GEMINI_API_KEY) {
-    console.warn(
-      "[warn] GEMINI_API_KEY not set — /api/suggestions will respond with 503 until you add it to .env."
-    );
-  }
-});
+connectDb()
+  .catch(() => false)
+  .finally(() => {
+    const server = app.listen(PORT, () => {
+      console.log(`EcoTrack server running on http://localhost:${PORT}`);
+      if (!isDbReady()) {
+        console.warn("[warn] MongoDB not connected — auth and data APIs will return 503.");
+      }
+      if (!GEMINI_API_KEY) {
+        console.warn(
+          "[warn] GEMINI_API_KEY not set — /api/suggestions will respond with 503 until you add it to .env."
+        );
+      }
+    });
+    server.on("error", (err) => {
+      if (err.code === "EADDRINUSE") {
+        console.error(`[error] Port ${PORT} is already in use. Stop the other server or change PORT in .env.`);
+      } else {
+        console.error("[error] Server failed to start:", err.message);
+      }
+      process.exit(1);
+    });
+  });

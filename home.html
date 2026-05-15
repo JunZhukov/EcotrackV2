@@ -78,18 +78,9 @@
                   &ldquo;Do not wait for a change of environment before you act. Cause a change of environment through action.&rdquo;
                 </p>
               </div>
-              <div class="home-hero-actions" aria-label="Quick actions">
-                <a class="home-qbtn home-qbtn--green" href="./log-activity.html">
-                  <span class="home-qbtn-icon" aria-hidden="true">📝</span>
-                  <span>Log Activity</span>
-                </a>
-                <a class="home-qbtn home-qbtn--blue" href="./overview.html#eco-suggestions">
-                  <span class="home-qbtn-icon" aria-hidden="true">⚡</span>
-                  <span>Quick Log</span>
-                </a>
-                <a class="home-qbtn home-qbtn--violet" href="./analytics.html">
-                  <span class="home-qbtn-icon" aria-hidden="true">📊</span>
-                  <span>Analytics</span>
+              <div class="home-hero-actions" aria-label="Log activity shortcut">
+                <a class="home-log-fab" href="./log-activity.html" aria-label="Log activity">
+                  <span aria-hidden="true">+</span>
                 </a>
               </div>
             </section>
@@ -180,11 +171,11 @@
                 </div>
               </article>
 
-              <!-- TODAY'S MISSIONS -->
-              <article class="home-card home-card--missions">
+              <!-- RECENT ACTIVITY -->
+              <article class="home-card home-card--activity">
                 <div class="home-card-head">
-                  <p class="home-card-label">Today's missions</p>
-                  <span class="home-card-badge" id="missionsBadge">0/4</span>
+                  <p class="home-card-label">Recent activity</p>
+                  <span class="home-card-badge" id="recentActivityBadge">0 logs</span>
                 </div>
 
                 <div class="missions-progress">
@@ -268,6 +259,7 @@
       </div>
     </div>
 
+    <script src="./api-client.js"></script>
     <script src="./alerts.js"></script>
     <script src="./gamification.js"></script>
     <script src="./home.js"></script>

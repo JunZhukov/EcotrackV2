@@ -512,13 +512,78 @@
 
 .recent-activity-item {
   display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
+  grid-template-columns: 40px minmax(0, 1fr) auto;
   gap: 0.65rem;
   align-items: start;
   padding: 0.65rem;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(31, 42, 35, 0.08);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.recent-activity-item:hover .recent-activity-delete {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.recent-activity-delete {
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.18);
+  color: #b91c1c;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.recent-activity-delete:focus-visible {
+  opacity: 1;
+  transform: translateY(0);
+  outline: 2px solid rgba(220, 38, 38, 0.55);
+  outline-offset: 2px;
+}
+
+.recent-activity-delete:hover {
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(220, 38, 38, 0.35);
+}
+
+.recent-activity-delete:active {
+  transform: translateY(1px);
+}
+
+.recent-activity-delete svg {
+  width: 15px;
+  height: 15px;
+}
+
+[data-theme="dark"] .recent-activity-delete {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: rgba(248, 113, 113, 0.22);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .recent-activity-delete:hover {
+  background: rgba(248, 113, 113, 0.2);
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+/* Always show the delete button on touch devices since there's no hover. */
+@media (hover: none) {
+  .recent-activity-delete {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 [data-theme="dark"] .recent-activity-item {

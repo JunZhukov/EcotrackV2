@@ -75,7 +75,7 @@
 
   function initTheme() {
     const options = document.querySelectorAll(".theme-option");
-    const current = window.EcoTheme ? window.EcoTheme.current : "light";
+    const current = window.EcoTheme ? window.EcoTheme.current : "dark";
 
     options.forEach((btn) => {
       const value = btn.dataset.themeValue;
@@ -86,6 +86,9 @@
         options.forEach((b) =>
           b.setAttribute("aria-checked", b.dataset.themeValue === next ? "true" : "false")
         );
+        if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+          window.EcoApi.updateProfile({ theme: next }).catch(() => {});
+        }
         toast(
           "success",
           next === "dark" ? "Night Mode is on. Welcome to the dark side 🌙" : "Light Mode is on. ☀️"
@@ -120,6 +123,9 @@
       input.addEventListener("change", () => {
         prefs[key] = input.checked;
         saveNotifs(prefs);
+        if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+          window.EcoApi.updateProfile({ notifPrefs: prefs }).catch(() => {});
+        }
         const label = input
           .closest(".settings-row")
           ?.querySelector(".settings-row-title")?.textContent || "Preference";
@@ -188,14 +194,21 @@
     const signOutBtn = document.querySelector("#signOut");
 
     if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
+      resetBtn.addEventListener("click", async () => {
         const ok = window.confirm(
-          "Reset all of your XP, quests, streaks, and badges? This can't be undone."
+          "Reset all of your XP, quests, streaks, badges, and activity logs? This can't be undone."
         );
         if (!ok) return;
         try {
+          if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+            await window.EcoApi.resetProgress();
+          }
           localStorage.removeItem(STATE_KEY);
-        } catch (_) {}
+          localStorage.removeItem("ecotrack:activityLogs");
+        } catch (_) {
+          toast("error", "Could not reset progress. Try again.");
+          return;
+        }
         toast("info", "Progress reset. Starting fresh!");
         window.setTimeout(() => window.location.reload(), 900);
       });
@@ -203,6 +216,7 @@
 
     if (signOutBtn) {
       signOutBtn.addEventListener("click", () => {
+        if (window.EcoApi) window.EcoApi.clearSession();
         toast("info", "Signing you out...");
         window.setTimeout(() => {
           window.location.assign("./login.html");
@@ -218,9 +232,17 @@
     initAccount();
   }
 
+  function start() {
+    if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+      window.__ecoApiReady.then(init);
+    } else {
+      init();
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", start);
   } else {
-    init();
+    start();
   }
 })();

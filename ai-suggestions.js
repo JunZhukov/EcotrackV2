@@ -269,10 +269,26 @@
     });
   }
 
-  // Kick off after the dashboard has settled.
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => fetchSuggestions());
-  } else {
+  window.addEventListener("ecotrack:logs-changed", () => {
     fetchSuggestions();
+  });
+
+  function start() {
+    fetchSuggestions();
+    window.addEventListener("ecotrack:api-ready", () => fetchSuggestions());
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+        window.__ecoApiReady.then(start);
+      } else {
+        start();
+      }
+    });
+  } else if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+    window.__ecoApiReady.then(start);
+  } else {
+    start();
   }
 })();

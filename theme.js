@@ -1,16 +1,16 @@
 (function bootstrapTheme() {
   "use strict";
   const KEY = "ecotrack:theme";
-  let theme = "light";
+  let theme = "dark";
   try {
-    theme = localStorage.getItem(KEY) || "light";
+    theme = localStorage.getItem(KEY) || "dark";
   } catch (_) {}
   if (theme !== "dark") theme = "light";
   document.documentElement.setAttribute("data-theme", theme);
 
   window.EcoTheme = {
     get current() {
-      return document.documentElement.getAttribute("data-theme") || "light";
+      return document.documentElement.getAttribute("data-theme") || "dark";
     },
     set(next) {
       const value = next === "dark" ? "dark" : "light";

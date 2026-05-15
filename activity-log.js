@@ -317,9 +317,39 @@
     const logs = readLogs();
     logs.unshift(log);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(logs.slice(0, 30)));
+    if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+      window.EcoApi.saveActivityLog(log).catch(() => {});
+    }
+  }
+
+  function wireNumberSteppers() {
+    document.querySelectorAll(".log-number-wrap").forEach((wrap) => {
+      const input = wrap.querySelector('input[type="number"]');
+      if (!input) return;
+      const step = () => {
+        const s = Number(input.step);
+        return Number.isFinite(s) && s > 0 ? s : 1;
+      };
+      wrap.querySelectorAll(".log-step-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const min = Number(input.min);
+          const floor = Number.isFinite(min) ? min : 0;
+          const cur = Number(input.value) || 0;
+          const next =
+            btn.dataset.step === "up" ? cur + step() : Math.max(floor, cur - step());
+          input.value = String(
+            input.step && String(input.step).includes(".")
+              ? Number(next.toFixed(2))
+              : Math.round(next)
+          );
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+      });
+    });
   }
 
   // ---------- Wire up ----------
+  wireNumberSteppers();
   addFoodBtn.addEventListener("click", addFood);
   addTransportBtn.addEventListener("click", addTransport);
 

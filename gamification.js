@@ -524,6 +524,10 @@
   function save(state) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      window.__ecoState = state;
+      if (window.EcoApi && window.EcoApi.isLoggedIn()) {
+        window.EcoApi.pushGamification(state).catch(() => {});
+      }
     } catch (_) {}
   }
 
@@ -996,9 +1000,18 @@
     }
   }
 
+  function start() {
+    const run = () => init();
+    if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
+      window.__ecoApiReady.then(run);
+    } else {
+      run();
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", start);
   } else {
-    init();
+    start();
   }
 })();
