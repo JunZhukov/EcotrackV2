@@ -163,6 +163,87 @@
   box-shadow: 0 3px 0 #166534, 0 8px 18px rgba(22, 101, 52, 0.22);
 }
 
+/* Log FAB Tooltip — Neobrutalist, matching badge-pop design */
+.log-fab-tooltip {
+  position: fixed;
+  z-index: 80;
+  width: 280px;
+  background: #c4d6bd;
+  border: 3px solid #1f2a23;
+  box-shadow: 8px 8px 0 #1f2a23;
+  font-family: "Poppins", sans-serif;
+  color: #1f2a23;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.22s ease;
+  border-radius: 4px;
+}
+
+.log-fab-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.log-fab-tooltip-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.85rem;
+  background: #ffffff;
+  border-bottom: 3px solid #1f2a23;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.log-fab-tooltip-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.log-fab-tooltip-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.log-fab-tooltip-body {
+  padding: 0.75rem 0.85rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.log-fab-tooltip-text {
+  margin: 0;
+  color: #1f2a23;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .log-fab-tooltip {
+    transition: opacity 0.15s ease;
+    transform: none;
+  }
+}
+
+[data-theme="dark"] .log-fab-tooltip {
+  background: #c4d6bd;
+  border-color: #1f2a23;
+  color: #1f2a23;
+  box-shadow: 8px 8px 0 #1f2a23;
+}
+
+[data-theme="dark"] .log-fab-tooltip-head {
+  background: #ffffff;
+  border-bottom: 3px solid #1f2a23;
+  color: #1f2a23;
+}
+
+[data-theme="dark"] .log-fab-tooltip-text {
+  color: #1f2a23;
+}
 [data-theme="dark"] .db-hero-stat-block {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.12);

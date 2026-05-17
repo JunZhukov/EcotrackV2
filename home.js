@@ -360,7 +360,63 @@
       statusParagraph.textContent = weeklyStatusCopy(streak, completedToday);
   }
 
+  let logFabTooltipHideTimer = null;
+
+  function positionLogFabTooltip(fab, tooltip) {
+    tooltip.style.visibility = "hidden";
+    tooltip.classList.add("is-visible");
+
+    const fabRect = fab.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const margin = 12;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    let top = fabRect.top - tooltipRect.height - margin;
+    if (top < margin) {
+      top = fabRect.bottom + margin;
+    }
+
+    let left = fabRect.left + fabRect.width / 2 - tooltipRect.width / 2;
+    if (left < margin) left = margin;
+    if (left + tooltipRect.width > vw - margin) left = vw - margin - tooltipRect.width;
+
+    if (top + tooltipRect.height > vh - margin) top = vh - margin - tooltipRect.height;
+
+    tooltip.style.top = `${Math.max(margin, top)}px`;
+    tooltip.style.left = `${left}px`;
+    tooltip.style.visibility = "";
+  }
+
+  function showLogFabTooltip(fab, tooltip) {
+    if (logFabTooltipHideTimer) {
+      clearTimeout(logFabTooltipHideTimer);
+      logFabTooltipHideTimer = null;
+    }
+    positionLogFabTooltip(fab, tooltip);
+    requestAnimationFrame(() => tooltip.classList.add("is-visible"));
+  }
+
+  function hideLogFabTooltip(tooltip) {
+    if (logFabTooltipHideTimer) clearTimeout(logFabTooltipHideTimer);
+    logFabTooltipHideTimer = window.setTimeout(() => {
+      tooltip.classList.remove("is-visible");
+    }, 60);
+  }
+
+  function initLogFabTooltip() {
+    const fab = document.getElementById("homeLogFab");
+    const tooltip = document.getElementById("homeLogFabTooltip");
+    if (!fab || !tooltip) return;
+
+    fab.addEventListener("mouseenter", () => showLogFabTooltip(fab, tooltip));
+    fab.addEventListener("focus", () => showLogFabTooltip(fab, tooltip));
+    fab.addEventListener("mouseleave", () => hideLogFabTooltip(tooltip));
+    fab.addEventListener("blur", () => hideLogFabTooltip(tooltip));
+  }
+
   function start() {
+    initLogFabTooltip();
     if (window.__ecoApiReady && typeof window.__ecoApiReady.then === "function") {
       window.__ecoApiReady.then(hydrate);
     } else {

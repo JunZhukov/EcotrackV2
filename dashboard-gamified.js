@@ -5,6 +5,61 @@
     typeof window.matchMedia === "function" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  let logFabTooltipHideTimer = null;
+
+  function positionLogFabTooltip(fab, tooltip) {
+    tooltip.style.visibility = "hidden";
+    tooltip.classList.add("is-visible");
+
+    const fabRect = fab.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const margin = 12;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    let top = fabRect.top - tooltipRect.height - margin;
+    if (top < margin) {
+      top = fabRect.bottom + margin;
+    }
+
+    let left = fabRect.left + fabRect.width / 2 - tooltipRect.width / 2;
+    if (left < margin) left = margin;
+    if (left + tooltipRect.width > vw - margin) left = vw - margin - tooltipRect.width;
+
+    if (top + tooltipRect.height > vh - margin) top = vh - margin - tooltipRect.height;
+
+    tooltip.style.top = `${Math.max(margin, top)}px`;
+    tooltip.style.left = `${left}px`;
+    tooltip.style.visibility = "";
+  }
+
+  function showLogFabTooltip(fab, tooltip) {
+    if (logFabTooltipHideTimer) {
+      clearTimeout(logFabTooltipHideTimer);
+      logFabTooltipHideTimer = null;
+    }
+    positionLogFabTooltip(fab, tooltip);
+    requestAnimationFrame(() => tooltip.classList.add("is-visible"));
+  }
+
+  function hideLogFabTooltip(tooltip) {
+    if (logFabTooltipHideTimer) clearTimeout(logFabTooltipHideTimer);
+    logFabTooltipHideTimer = window.setTimeout(() => {
+      tooltip.classList.remove("is-visible");
+    }, 60);
+  }
+
+  function initLogFabTooltip() {
+    const fab = document.getElementById("dbLogFab");
+    const tooltip = document.getElementById("dbLogFabTooltip");
+    if (!fab || !tooltip) return;
+
+    fab.addEventListener("mouseenter", () => showLogFabTooltip(fab, tooltip));
+    fab.addEventListener("focus", () => showLogFabTooltip(fab, tooltip));
+    fab.addEventListener("mouseleave", () => hideLogFabTooltip(tooltip));
+    fab.addEventListener("blur", () => hideLogFabTooltip(tooltip));
+  }
+
   function animateNumber(el, target, opts) {
     if (!el) return;
     const options = opts || {};
@@ -38,6 +93,7 @@
   }
 
   function init() {
+    initLogFabTooltip();
     const heroStat = document.getElementById("dbHeroStat");
     if (heroStat) {
       const raw = (heroStat.firstChild && heroStat.firstChild.nodeValue) || "";

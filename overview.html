@@ -28,7 +28,6 @@
             <a class="topbar-link is-active" href="./overview.html">OVERVIEW</a>
             <a class="topbar-link" href="./analytics.html">ANALYTICS</a>
             <a class="topbar-link" href="./log-activity.html">LOG</a>
-            <a class="topbar-link" href="./about.html">ABOUT US</a>
           </nav>
           <div class="topbar-actions">
             <div class="topbar-streak" role="button" tabindex="0" aria-label="Daily streak">
@@ -78,9 +77,18 @@
                 </span>
               </div>
             </div>
-            <a class="dashboard-log-fab" href="./log-activity.html" aria-label="Log daily activity">
+            <a class="dashboard-log-fab" href="./log-activity.html" aria-label="Log daily activity" id="dbLogFab">
               <span aria-hidden="true">+</span>
             </a>
+            <div class="log-fab-tooltip" id="dbLogFabTooltip" role="tooltip">
+              <div class="log-fab-tooltip-head">
+                <span class="log-fab-tooltip-icon" aria-hidden="true">📝</span>
+                <span class="log-fab-tooltip-title">Log Activity</span>
+              </div>
+              <div class="log-fab-tooltip-body">
+                <p class="log-fab-tooltip-text">Quick shortcut to log your eco-actions and earn XP</p>
+              </div>
+            </div>
           </section>
 
           <section class="db-stats" aria-label="Emission breakdown" id="dbStats">
