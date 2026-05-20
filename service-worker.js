@@ -1,4 +1,4 @@
-const CACHE_VERSION = "ecotrack-v74";
+const CACHE_VERSION = "ecotrack-v75";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -38,6 +38,7 @@ const ASSETS_TO_CACHE = [
   "./analytics.js",
   "./settings.js",
   "./theme.js",
+  "./auth-page-transitions.js",
   "./api-client.js",
   "./pwa-register.js",
   "./Logo.png",

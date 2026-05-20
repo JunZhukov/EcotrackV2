@@ -401,7 +401,7 @@
     if (logFabTooltipHideTimer) clearTimeout(logFabTooltipHideTimer);
     logFabTooltipHideTimer = window.setTimeout(() => {
       tooltip.classList.remove("is-visible");
-    }, 60);
+    }, 220);
   }
 
   function initLogFabTooltip() {
@@ -413,6 +413,10 @@
     fab.addEventListener("focus", () => showLogFabTooltip(fab, tooltip));
     fab.addEventListener("mouseleave", () => hideLogFabTooltip(tooltip));
     fab.addEventListener("blur", () => hideLogFabTooltip(tooltip));
+
+    // Keep the card visible while hovering it.
+    tooltip.addEventListener("mouseenter", () => showLogFabTooltip(fab, tooltip));
+    tooltip.addEventListener("mouseleave", () => hideLogFabTooltip(tooltip));
   }
 
   function start() {

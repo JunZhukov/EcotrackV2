@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="./theme.js"></script>
     <link rel="stylesheet" href="./signup.css" />
     <link rel="stylesheet" href="./alerts.css" />
   </head>
@@ -44,6 +45,11 @@
           </div>
           <p class="login-link">Already have an account? <a href="./login.html">LOGIN.</a></p>
         </header>
+
+        <div class="signup-progress" aria-hidden="true">
+          <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+          <div class="progress-text">Step 2 of 5</div>
+        </div>
 
         <div class="signup-content">
           <h2>YOUR GOAL</h2>
@@ -78,6 +84,7 @@
         }
       });
     </script>
+    <script src="./auth-page-transitions.js"></script>
     <script src="./pwa-register.js"></script>
   </body>
 </html>
